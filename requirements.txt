@@ -1,0 +1,25 @@
+# Dépendances pour le module de scraping
+# Installation: pip install -r requirements.txt
+
+# Requêtes HTTP
+requests==2.31.0
+
+# Parsing HTML (pour le scraping)
+beautifulsoup4==4.12.2
+
+# Parsing RSS - Version compatible Python 3.13
+# IMPORTANT: feedparser 6.0.10 ne fonctionne pas avec Python 3.13 (module cgi supprimé)
+# Utiliser la dernière version ou installer depuis GitHub
+feedparser>=6.0.11
+
+# Gestion des dates
+python-dateutil==2.8.2
+
+# Variables d'environnement (.env)
+python-dotenv==1.0.0
+
+# PostgreSQL (pour la personne qui fait la BDD)
+# psycopg2-binary==2.9.9
+
+# Optionnel: pour les tests
+# pytest==7.4.3

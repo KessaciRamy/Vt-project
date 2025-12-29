@@ -1,0 +1,122 @@
+# .gitignore - Version complète
+
+# ============================================
+# FICHIERS SENSIBLES (CRITIQUE !)
+# ============================================
+# Ne JAMAIS commit les tokens/passwords
+.env
+*.env
+.env.local
+.env.production
+.env.*.local
+config.json
+
+# ============================================
+# PYTHON
+# ============================================
+# Bytecode compilé
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+
+# Distribution
+dist/
+build/
+*.whl
+
+# Environnements virtuels
+venv/
+env/
+ENV/
+.venv
+virtualenv/
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ============================================
+# BASE DE DONNÉES (si vous testez en local)
+# ============================================
+*.db
+*.sqlite
+*.sqlite3
+
+# ============================================
+# FICHIERS DE TEST ET DONNÉES
+# ============================================
+# Données collectées temporaires
+collected_data.json
+*.json.bak
+test_*.json
+
+# Dossiers de test
+test_data/
+temp/
+tmp/
+
+# Logs
+*.log
+logs/
+
+# ============================================
+# ÉDITEURS ET IDEs
+# ============================================
+# VS Code
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+# ============================================
+# SYSTÈME D'EXPLOITATION
+# ============================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+
+# ============================================
+# AUTRES
+# ============================================
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Compressed files (si vous créez des archives)
+*.zip
+*.tar
+*.tar.gz
+*.rar
