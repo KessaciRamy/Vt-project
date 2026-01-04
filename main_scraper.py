@@ -278,6 +278,33 @@ def main():
         return 1
 
 
+
+def run_scraper_api(
+    databases=None,
+    releases_limit=10,
+    posts_limit=10,
+    cves_limit=20,
+    output_file="data/collected_data.json"
+):
+    """
+    Fonction appelée depuis Flask (veilleur)
+    """
+    all_data, stats = collect_all_databases(
+        databases=databases,
+        releases_limit=releases_limit,
+        posts_limit=posts_limit,
+        cves_limit=cves_limit
+    )
+
+    if all_data:
+        save_to_json(all_data, output_file)
+
+    return {
+        "output_file": output_file,
+        "stats": stats,
+        "items_collected": len(all_data)
+    }
+
 if __name__ == "__main__":
     exit_code = main()
     sys.exit(exit_code)

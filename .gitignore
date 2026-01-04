@@ -36,6 +36,7 @@ virtualenv/
 
 # pytest
 .pytest_cache/
+tests
 .coverage
 htmlcov/
 
@@ -51,6 +52,7 @@ htmlcov/
 # ============================================
 # Données collectées temporaires
 collected_data.json
+cleaned_data.json
 *.json.bak
 test_*.json
 

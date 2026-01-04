@@ -19,7 +19,10 @@ python-dateutil==2.8.2
 python-dotenv==1.0.0
 
 # PostgreSQL (pour la personne qui fait la BDD)
-# psycopg2-binary==2.9.9
+psycopg2-binary==2.9.9
+
+flask-jwt-extended==4.6.0
+Werkzeug==3.0.1
 
 # Optionnel: pour les tests
 # pytest==7.4.3
