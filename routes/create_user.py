@@ -44,6 +44,8 @@ def create_user():
         }), 201
 
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         return jsonify({
             "error": "Erreur lors de la création de l'utilisateur",
             "details": str(e)

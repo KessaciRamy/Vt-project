@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, get_jwt, get_jwt_identity
 from models.db_connection import get_connection
 
 notif_bp = Blueprint("notifications", __name__)
@@ -8,6 +8,11 @@ notif_bp = Blueprint("notifications", __name__)
 @notif_bp.route("/notifications", methods=["GET"]) 
 @jwt_required()
 def get_notifications():
+    compte = get_jwt_identity()
+    claims = get_jwt()
+    user_type = claims["user_type"]
+    if user_type != 'decideur':
+        return jsonify({"error": "Accès refusé"}), 403
     conn = get_connection()
     cur = conn.cursor()
     cur.execute("""

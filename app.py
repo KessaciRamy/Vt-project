@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from routes.veilleur import veilleur_bp
 from routes.analyst import analyste_bp
 from routes.auth import auth_bp
@@ -16,6 +16,31 @@ def create_app():
     
     init_jwt(app)
 
+    #les pages
+    @app.route("/")
+    def home():
+        return render_template("auth.html")
+    
+    @app.route("/login")
+    def login_page():
+        return render_template("auth.html")
+    
+    @app.route('/account')
+    def create_account():
+        return render_template('create_account.html')
+    
+    @app.route('/veilleur')
+    def veilleur():
+        return render_template('veilleur.html')
+    
+    @app.route('/analyste')
+    def analyste():
+        return render_template('analyste.html')
+    
+    @app.route('/decideur')
+    def decideur():
+        return render_template('decideur.html')
+    
     app.register_blueprint(veilleur_bp, url_prefix="/veilleur")
     app.register_blueprint(analyste_bp, url_prefix="/analyste")
     app.register_blueprint(auth_bp, url_prefix="/auth")

@@ -31,10 +31,10 @@ def login():
         return jsonify({"error": "Mot de passe incorrect"}), 401
 
     # JWT enrichi avec le type
-    token = create_access_token(identity={
-        "compte": compte,
-        "user_type": user_type
-    })
+    token = create_access_token(
+        identity= compte,
+        additional_claims={"user_type": user_type}
+    )
 
     return jsonify({
         "access_token": token,

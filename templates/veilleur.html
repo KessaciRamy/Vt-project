@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Espace Veilleur</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-primary mb-4">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1">Veilleur - Scraping Center</span>
+            <button class="btn btn-outline-light" onclick="logout()">Déconnexion</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card shadow">
+            <div class="card-header bg-dark text-white">Configuration du Scraping</div>
+            <div class="card-body">
+                <form id="scrapForm">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Bases de données cibles (séparées par virgule)</label>
+                            <input type="text" class="form-control" id="databases" value="postgresql, mongodb, redis" placeholder="ex: postgresql, mongodb">
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Limite Releases</label>
+                            <input type="number" class="form-control" id="limit_releases" value="5">
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Limite Posts</label>
+                            <input type="number" class="form-control" id="limit_posts" value="5">
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Limite CVEs</label>
+                            <input type="number" class="form-control" id="limit_cves" value="10">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100" id="scrapBtn">
+                        <span id="btnText">Lancer la Recherche (Scraping)</span>
+                        <span id="btnSpinner" class="spinner-border spinner-border-sm d-none"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div id="resultArea" class="mt-4 d-none">
+            <div class="alert alert-info">
+                <h5>Résultat du scraping :</h5>
+                <pre id="jsonOutput" style="max-height: 400px; overflow-y: scroll; background: #f8f9fa; padding: 10px; border-radius: 5px;"></pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/app.js"></script>
+    <script>
+        // Logique spécifique Veilleur
+        document.getElementById("scrapForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById("scrapBtn");
+            const spinner = document.getElementById("btnSpinner");
+            const output = document.getElementById("jsonOutput");
+            const resArea = document.getElementById("resultArea");
+
+            // UI Loading
+            btn.disabled = true;
+            spinner.classList.remove("d-none");
+            resArea.classList.add("d-none");
+
+            // Préparation des données
+            const databases = document.getElementById("databases").value.split(',').map(s => s.trim());
+            const body = {
+                databases: databases,
+                releases: parseInt(document.getElementById("limit_releases").value),
+                posts: parseInt(document.getElementById("limit_posts").value),
+                cves: parseInt(document.getElementById("limit_cves").value)
+            };
+
+            try {
+                const response = await authFetch("/veilleur/scrap", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(body)
+                });
+                const data = await response.json();
+                
+                output.textContent = JSON.stringify(data, null, 2);
+                resArea.classList.remove("d-none");
+            } catch (err) {
+                alert("Erreur lors du scraping");
+            } finally {
+                btn.disabled = false;
+                spinner.classList.add("d-none");
+            }
+        });
+    </script>
+</body>
+</html>

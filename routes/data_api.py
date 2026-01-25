@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 from models.db_connection import get_connection
 
 data_bp = Blueprint("data_api", __name__)
@@ -10,6 +10,11 @@ data_bp = Blueprint("data_api", __name__)
 @data_bp.route("/databases", methods=["GET"])
 @jwt_required()
 def get_databases():
+    compte = get_jwt_identity()
+    claims = get_jwt()
+    user_type = claims["user_type"]
+    if user_type != 'decideur':
+        return jsonify({"error": "Accès refusé"}), 403
     conn = get_connection()
     cur = conn.cursor()
 
@@ -43,6 +48,11 @@ def get_databases():
 @data_bp.route("/databases/<int:db_id>/releases", methods=["GET"])
 @jwt_required()
 def get_releases(db_id):
+    compte = get_jwt_identity()
+    claims = get_jwt()
+    user_type = claims["user_type"]
+    if user_type != 'decideur':
+        return jsonify({"error": "Accès refusé"}), 403
     conn = get_connection()
     cur = conn.cursor()
 
@@ -77,6 +87,11 @@ def get_releases(db_id):
 @data_bp.route("/databases/<int:db_id>/blogs", methods=["GET"])
 @jwt_required()
 def get_blog_posts(db_id):
+    compte = get_jwt_identity()
+    claims = get_jwt()
+    user_type = claims["user_type"]
+    if user_type != 'decideur':
+        return jsonify({"error": "Accès refusé"}), 403
     conn = get_connection()
     cur = conn.cursor()
 
@@ -109,6 +124,11 @@ def get_blog_posts(db_id):
 @data_bp.route("/databases/<int:db_id>/vulnerabilities", methods=["GET"])
 @jwt_required()
 def get_vulnerabilities(db_id):
+    compte = get_jwt_identity()
+    claims = get_jwt()
+    user_type = claims["user_type"]
+    if user_type != 'decideur':
+        return jsonify({"error": "Accès refusé"}), 403
     conn = get_connection()
     cur = conn.cursor()
 
@@ -143,6 +163,11 @@ def get_vulnerabilities(db_id):
 @data_bp.route("/databases/<int:db_id>/keywords", methods=["GET"])
 @jwt_required()
 def get_keywords(db_id):
+    compte = get_jwt_identity()
+    claims = get_jwt()
+    user_type = claims["user_type"]
+    if user_type != 'decideur':
+        return jsonify({"error": "Accès refusé"}), 403
     conn = get_connection()
     cur = conn.cursor()
 
