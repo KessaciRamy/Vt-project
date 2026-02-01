@@ -26,3 +26,6 @@ Werkzeug==3.0.1
 
 # Optionnel: pour les tests
 # pytest==7.4.3
+
+# Dépendances pour le traitement de texte
+nltk==3.8.1

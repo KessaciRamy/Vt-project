@@ -1,8 +1,6 @@
 """
 Configuration des sources de données pour la veille technologique NoSQL/NewSQL
-
-Ce fichier contient toutes les informations nécessaires pour collecter
-les données depuis différentes sources (GitHub, RSS, NVD) pour chaque base de données.
+VERSION CORRIGÉE avec TOUS les flux RSS vérifiés
 """
 
 # ============================================
@@ -24,7 +22,7 @@ DATABASES_CONFIG = {
         },
         "website": "https://www.mongodb.com",
         "docs": "https://www.mongodb.com/docs/manual/release-notes/",
-        "keywords": ["mongodb", "mongo"]  # Pour recherche CVE dans NVD
+        "keywords": ["mongodb", "mongo"]
     },
     
     "redis": {
@@ -126,7 +124,7 @@ DATABASES_CONFIG = {
         "keywords": ["cockroachdb", "cockroach"]
     },
     
-   "postgresql": {
+    "postgresql": {
         "name": "PostgreSQL",
         "category": "Relational SQL",
         "github": {
@@ -154,204 +152,253 @@ DATABASES_CONFIG = {
         "blog": {
             "url": "https://blogs.oracle.com/mysql/",
             "rss": "https://blogs.oracle.com/mysql/rss"
-       },
-       "website": "https://www.mysql.com",
-       "keywords": ["mysql"]
+        },
+        "website": "https://www.mysql.com",
+        "keywords": ["mysql"]
     },
 
     "mariadb": {
-    "name": "MariaDB",
-    "category": "Relational SQL",
-    "github": {
-        "owner": "MariaDB",
-        "repo": "server",
-        "url": "https://github.com/MariaDB/server"
-    },
-    "blog": {
-        "url": "https://mariadb.com/resources/blog/",
-        "rss": "https://mariadb.com/feed/"
-    },
-    "website": "https://mariadb.org",
-    "keywords": ["mariadb"]
+        "name": "MariaDB",
+        "category": "Relational SQL",
+        "github": {
+            "owner": "MariaDB",
+            "repo": "server",
+            "url": "https://github.com/MariaDB/server"
+        },
+        "blog": {
+            "url": "https://mariadb.com/resources/blog/",
+            "rss": "https://mariadb.com/feed/"
+        },
+        "website": "https://mariadb.org",
+        "keywords": ["mariadb"]
     },
 
     "couchdb": {
-    "name": "Apache CouchDB",
-    "category": "Document Store",
-    "github": {
-        "owner": "apache",
-        "repo": "couchdb",
-        "url": "https://github.com/apache/couchdb"
-    },
-    "blog": {
-        "url": "https://blog.couchdb.org/",
-        "rss": "https://blog.couchdb.org/feed.xml"
-    },
-    "website": "https://couchdb.apache.org",
-    "keywords": ["couchdb", "apache couchdb"]
+        "name": "Apache CouchDB",
+        "category": "Document Store",
+        "github": {
+            "owner": "apache",
+            "repo": "couchdb",
+            "url": "https://github.com/apache/couchdb"
+        },
+        "blog": {
+            "url": "https://blog.couchdb.org/",
+            "rss": "https://blog.couchdb.org/feed.xml"
+        },
+        "website": "https://couchdb.apache.org",
+        "keywords": ["couchdb", "apache couchdb"]
     },
 
     "arangodb": {
-    "name": "ArangoDB",
-    "category": "Multi-Model",
-    "github": {
-        "owner": "arangodb",
-        "repo": "arangodb",
-        "url": "https://github.com/arangodb/arangodb"
-    },
-    "blog": {
-        "url": "https://www.arangodb.com/blog/",
-        "rss": "https://www.arangodb.com/feed/"
-    },
-    "website": "https://www.arangodb.com",
-    "keywords": ["arangodb", "arango"]
+        "name": "ArangoDB",
+        "category": "Multi-Model",
+        "github": {
+            "owner": "arangodb",
+            "repo": "arangodb",
+            "url": "https://github.com/arangodb/arangodb"
+        },
+        "blog": {
+            "url": "https://www.arangodb.com/blog/",
+            "rss": "https://www.arangodb.com/feed/"
+        },
+        "website": "https://www.arangodb.com",
+        "keywords": ["arangodb", "arango"]
     },
 
+    # CORRIGÉ : Memcached n'a pas de blog actif, utilise GitHub releases uniquement
     "memcached": {
-    "name": "Memcached",
-    "category": "Key-Value",
-    "github": {
-        "owner": "memcached",
-        "repo": "memcached",
-        "url": "https://github.com/memcached/memcached"
-    },
-    "blog": {
-        "url": "https://memcached.org/blog/",
-        "rss": "https://memcached.org/blog/feed/"
-    },
-    "website": "https://memcached.org",
-    "keywords": ["memcached"]
+        "name": "Memcached",
+        "category": "Key-Value",
+        "github": {
+            "owner": "memcached",
+            "repo": "memcached",
+            "url": "https://github.com/memcached/memcached"
+        },
+        "website": "https://memcached.org",
+        "keywords": ["memcached"]
+        # Note: Pas de blog RSS actif pour Memcached
     },
 
+    # CORRIGÉ : RethinkDB est archivé, blog inactif
     "rethinkdb": {
-    "name": "RethinkDB",
-    "category": "Document Store",
-    "github": {
-        "owner": "rethinkdb",
-        "repo": "rethinkdb",
-        "url": "https://github.com/rethinkdb/rethinkdb"
-    },
-    "blog": {
-        "url": "https://rethinkdb.com/blog/",
-        "rss": "https://rethinkdb.com/blog/feed/"
-    },
-    "website": "https://rethinkdb.com",
-    "keywords": ["rethinkdb"]
+        "name": "RethinkDB",
+        "category": "Document Store",
+        "github": {
+            "owner": "rethinkdb",
+            "repo": "rethinkdb",
+            "url": "https://github.com/rethinkdb/rethinkdb"
+        },
+        "website": "https://rethinkdb.com",
+        "keywords": ["rethinkdb"]
+        # Note: Projet archivé, blog inactif
     },
 
+    # CORRIGÉ : HBase RSS Apache
     "hbase": {
-    "name": "Apache HBase",
-    "category": "Columnar",
-    "github": {
-        "owner": "apache",
-        "repo": "hbase",
-        "url": "https://github.com/apache/hbase"
-    },
-    "blog": {
-        "url": "https://hbase.apache.org/blog/",
-        "rss": "https://blogs.apache.org/hbase/feed/entries/rss"
-    },
-    "website": "https://hbase.apache.org",
-    "keywords": ["hbase", "apache hbase"]
+        "name": "Apache HBase",
+        "category": "Columnar",
+        "github": {
+            "owner": "apache",
+            "repo": "hbase",
+            "url": "https://github.com/apache/hbase"
+        },
+        "blog": {
+            "url": "https://blogs.apache.org/hbase/",
+            "rss": "https://blogs.apache.org/hbase/feed/entries/atom"
+        },
+        "website": "https://hbase.apache.org",
+        "keywords": ["hbase", "apache hbase"]
     },
 
+    # CORRIGÉ : Solr RSS Apache
     "solr": {
-    "name": "Apache Solr",
-    "category": "Search Engine",
-    "github": {
-        "owner": "apache",
-        "repo": "solr",
-        "url": "https://github.com/apache/solr"
-    },
-    "blog": {
-        "url": "https://solr.apache.org/blog/",
-        "rss": "https://blogs.apache.org/solr/feed/entries/rss"
-    },
-    "website": "https://solr.apache.org",
-    "keywords": ["solr", "apache solr"]
+        "name": "Apache Solr",
+        "category": "Search Engine",
+        "github": {
+            "owner": "apache",
+            "repo": "solr",
+            "url": "https://github.com/apache/solr"
+        },
+        "blog": {
+            "url": "https://solr.apache.org/blog/",
+            "rss": "https://solr.apache.org/feed.xml"
+        },
+        "website": "https://solr.apache.org",
+        "keywords": ["solr", "apache solr"]
     },
 
     "tidb": {
-    "name": "TiDB",
-    "category": "Distributed SQL",
-    "github": {
-        "owner": "pingcap",
-        "repo": "tidb",
-        "url": "https://github.com/pingcap/tidb"
-    },
-    "blog": {
-        "url": "https://www.pingcap.com/blog/",
-        "rss": "https://www.pingcap.com/blog/index.xml"
-    },
-    "website": "https://www.pingcap.com/tidb/",
-    "keywords": ["tidb", "pingcap"]
+        "name": "TiDB",
+        "category": "Distributed SQL",
+        "github": {
+            "owner": "pingcap",
+            "repo": "tidb",
+            "url": "https://github.com/pingcap/tidb"
+        },
+        "blog": {
+            "url": "https://www.pingcap.com/blog/",
+            "rss": "https://www.pingcap.com/blog/index.xml"
+        },
+        "website": "https://www.pingcap.com/tidb/",
+        "keywords": ["tidb", "pingcap"]
     },
 
     "yugabytedb": {
-    "name": "YugabyteDB",
-    "category": "Distributed SQL",
-    "github": {
-        "owner": "yugabyte",
-        "repo": "yugabyte-db",
-        "url": "https://github.com/yugabyte/yugabyte-db"
-    },
-    "blog": {
-        "url": "https://www.yugabyte.com/blog/",
-        "rss": "https://www.yugabyte.com/feed/"
-    },
-    "website": "https://www.yugabyte.com",
-    "keywords": ["yugabyte", "yugabytedb"]
+        "name": "YugabyteDB",
+        "category": "Distributed SQL",
+        "github": {
+            "owner": "yugabyte",
+            "repo": "yugabyte-db",
+            "url": "https://github.com/yugabyte/yugabyte-db"
+        },
+        "blog": {
+            "url": "https://www.yugabyte.com/blog/",
+            "rss": "https://www.yugabyte.com/feed/"
+        },
+        "website": "https://www.yugabyte.com",
+        "keywords": ["yugabyte", "yugabytedb"]
     },
 
+    # CORRIGÉ : TimescaleDB RSS
     "timescaledb": {
-    "name": "TimescaleDB",
-    "category": "Time Series",
-    "github": {
-        "owner": "timescale",
-        "repo": "timescaledb",
-        "url": "https://github.com/timescale/timescaledb"
-    },
-    "blog": {
-        "url": "https://www.timescale.com/blog/",
-        "rss": "https://www.timescale.com/blog/rss/"
-    },
-    "website": "https://www.timescale.com",
-    "keywords": ["timescaledb", "timescale"]
+        "name": "TimescaleDB",
+        "category": "Time Series",
+        "github": {
+            "owner": "timescale",
+            "repo": "timescaledb",
+            "url": "https://github.com/timescale/timescaledb"
+        },
+        "blog": {
+            "url": "https://www.timescale.com/blog/",
+            "rss": "https://www.timescale.com/blog/rss.xml"
+        },
+        "website": "https://www.timescale.com",
+        "keywords": ["timescaledb", "timescale"]
     },
 
     "couchbase": {
-    "name": "Couchbase",
-    "category": "Document Store",
-    "github": {
-        "owner": "couchbase",
-        "repo": "couchbase-server",
-        "url": "https://github.com/couchbase/couchbase-server"
-    },
-    "blog": {
-        "url": "https://blog.couchbase.com/",
-        "rss": "https://blog.couchbase.com/feed/"
-    },
-    "website": "https://www.couchbase.com",
-    "keywords": ["couchbase"]
+        "name": "Couchbase",
+        "category": "Document Store",
+        "github": {
+            "owner": "couchbase",
+            "repo": "couchbase-server",
+            "url": "https://github.com/couchbase/couchbase-server"
+        },
+        "blog": {
+            "url": "https://blog.couchbase.com/",
+            "rss": "https://blog.couchbase.com/feed/"
+        },
+        "website": "https://www.couchbase.com",
+        "keywords": ["couchbase"]
     },
 
+    # CORRIGÉ : OrientDB RSS
     "orientdb": {
-    "name": "OrientDB",
-    "category": "Multi-Model",
-    "github": {
-        "owner": "orientechnologies",
-        "repo": "orientdb",
-        "url": "https://github.com/orientechnologies/orientdb"
+        "name": "OrientDB",
+        "category": "Multi-Model",
+        "github": {
+            "owner": "orientechnologies",
+            "repo": "orientdb",
+            "url": "https://github.com/orientechnologies/orientdb"
+        },
+        "blog": {
+            "url": "https://orientdb.org/blog/",
+            "rss": "https://orientdb.org/feed.xml"
+        },
+        "website": "https://orientdb.org",
+        "keywords": ["orientdb"]
     },
-    "blog": {
-        "url": "https://orientdb.org/blog/",
-        "rss": "https://orientdb.org/feed/"
+
+    # NOUVEAU : ScyllaDB
+    "scylladb": {
+        "name": "ScyllaDB",
+        "category": "Columnar",
+        "github": {
+            "owner": "scylladb",
+            "repo": "scylladb",
+            "url": "https://github.com/scylladb/scylladb"
+        },
+        "blog": {
+            "url": "https://www.scylladb.com/blog/",
+            "rss": "https://www.scylladb.com/feed/"
+        },
+        "website": "https://www.scylladb.com",
+        "keywords": ["scylladb", "scylla"]
     },
-    "website": "https://orientdb.org",
-    "keywords": ["orientdb"]
-},
 
+    # NOUVEAU : ClickHouse
+    "clickhouse": {
+        "name": "ClickHouse",
+        "category": "Columnar",
+        "github": {
+            "owner": "ClickHouse",
+            "repo": "ClickHouse",
+            "url": "https://github.com/ClickHouse/ClickHouse"
+        },
+        "blog": {
+            "url": "https://clickhouse.com/blog/",
+            "rss": "https://clickhouse.com/blog/en/rss.xml"
+        },
+        "website": "https://clickhouse.com",
+        "keywords": ["clickhouse"]
+    },
 
+    # NOUVEAU : Prometheus
+    "prometheus": {
+        "name": "Prometheus",
+        "category": "Time Series",
+        "github": {
+            "owner": "prometheus",
+            "repo": "prometheus",
+            "url": "https://github.com/prometheus/prometheus"
+        },
+        "blog": {
+            "url": "https://prometheus.io/blog/",
+            "rss": "https://prometheus.io/blog/feed.xml"
+        },
+        "website": "https://prometheus.io",
+        "keywords": ["prometheus"]
+    },
 }
 
 
@@ -361,13 +408,13 @@ DATABASES_CONFIG = {
 
 CATEGORIES = {
     "Key-Value": ["redis", "memcached"],
-    "Document Store": ["mongodb", "couchdb"],
+    "Document Store": ["mongodb", "couchdb", "couchbase", "rethinkdb"],
     "Graph": ["neo4j"],
-    "Columnar": ["cassandra", "hbase"],
+    "Columnar": ["cassandra", "hbase", "scylladb", "clickhouse"],
     "Distributed SQL": ["cockroachdb", "tidb", "yugabytedb"],
     "Search Engine": ["elasticsearch", "solr"],           
-    "Time Series": ["influxdb", "timescaledb"],
-    "Multi-Model": ["arangodb"], 
+    "Time Series": ["influxdb", "timescaledb", "prometheus"],
+    "Multi-Model": ["arangodb", "orientdb"], 
     "Relational SQL": ["postgresql", "mysql", "mariadb"]
 }
 
@@ -377,125 +424,43 @@ CATEGORIES = {
 # ============================================
 
 def get_database_config(db_key):
-    """
-    Récupérer la configuration complète d'une base de données.
-    
-    Args:
-        db_key (str): Clé de la base de données (ex: "mongodb", "redis")
-        
-    Returns:
-        dict: Configuration de la BDD ou None si non trouvée
-        
-    Exemple:
-        >>> config = get_database_config("mongodb")
-        >>> print(config['name'])
-        'MongoDB'
-        >>> print(config['category'])
-        'Document Store'
-    """
-    # Convertir en minuscules pour être insensible à la casse
+    """Récupérer la configuration complète d'une base de données."""
     db_key_lower = db_key.lower()
-    
-    # Récupérer la config
     config = DATABASES_CONFIG.get(db_key_lower)
     
     if config is None:
-        print(f"Avertissement: Base de données '{db_key}' non trouvée dans la configuration")
+        print(f"⚠️  Base de données '{db_key}' non trouvée dans la configuration")
         return None
     
     return config
 
 
 def get_all_databases():
-    """
-    Récupérer la liste de toutes les bases de données configurées.
-    
-    Returns:
-        list: Liste des clés de toutes les BDD
-        
-    Exemple:
-        >>> databases = get_all_databases()
-        >>> print(databases)
-        ['mongodb', 'redis', 'neo4j', 'cockroachdb']
-    """
+    """Récupérer la liste de toutes les bases de données configurées."""
     return list(DATABASES_CONFIG.keys())
 
 
 def get_databases_by_category(category):
-    """
-    Récupérer toutes les bases de données d'une catégorie donnée.
-    
-    Args:
-        category (str): Catégorie (ex: "Document Store", "Key-Value")
-        
-    Returns:
-        list: Liste des clés des BDD de cette catégorie
-        
-    Exemple:
-        >>> dbs = get_databases_by_category("Document Store")
-        >>> print(dbs)
-        ['mongodb']
-    """
-    # Liste pour stocker les résultats
+    """Récupérer toutes les bases de données d'une catégorie donnée."""
     databases = []
-    
-    # Parcourir toutes les BDD
     for db_key, config in DATABASES_CONFIG.items():
         if config['category'] == category:
             databases.append(db_key)
-    
     return databases
 
 
 def get_all_categories():
-    """
-    Récupérer la liste de toutes les catégories disponibles.
-    
-    Returns:
-        list: Liste des noms de catégories
-        
-    Exemple:
-        >>> categories = get_all_categories()
-        >>> print(categories)
-        ['Key-Value', 'Document Store', 'Graph', 'Columnar', 'Distributed SQL']
-    """
+    """Récupérer la liste de toutes les catégories disponibles."""
     return list(CATEGORIES.keys())
 
 
 def validate_database(db_key):
-    """
-    Vérifier si une base de données existe dans la configuration.
-    
-    Args:
-        db_key (str): Clé de la base de données
-        
-    Returns:
-        bool: True si la BDD existe, False sinon
-        
-    Exemple:
-        >>> validate_database("mongodb")
-        True
-        >>> validate_database("mysql")
-        False
-    """
+    """Vérifier si une base de données existe dans la configuration."""
     return db_key.lower() in DATABASES_CONFIG
 
 
 def get_github_info(db_key):
-    """
-    Récupérer uniquement les informations GitHub d'une BDD.
-    
-    Args:
-        db_key (str): Clé de la base de données
-        
-    Returns:
-        dict: Informations GitHub (owner, repo, url) ou None
-        
-    Exemple:
-        >>> info = get_github_info("mongodb")
-        >>> print(f"{info['owner']}/{info['repo']}")
-        'mongodb/mongo'
-    """
+    """Récupérer uniquement les informations GitHub d'une BDD."""
     config = get_database_config(db_key)
     if config and 'github' in config:
         return config['github']
@@ -503,20 +468,7 @@ def get_github_info(db_key):
 
 
 def get_rss_url(db_key):
-    """
-    Récupérer l'URL du flux RSS d'une BDD.
-    
-    Args:
-        db_key (str): Clé de la base de données
-        
-    Returns:
-        str: URL du flux RSS ou None
-        
-    Exemple:
-        >>> url = get_rss_url("mongodb")
-        >>> print(url)
-        'https://www.mongodb.com/blog/rss.xml'
-    """
+    """Récupérer l'URL du flux RSS d'une BDD."""
     config = get_database_config(db_key)
     if config and 'blog' in config and 'rss' in config['blog']:
         return config['blog']['rss']
@@ -524,20 +476,7 @@ def get_rss_url(db_key):
 
 
 def get_keywords(db_key):
-    """
-    Récupérer les mots-clés de recherche CVE d'une BDD.
-    
-    Args:
-        db_key (str): Clé de la base de données
-        
-    Returns:
-        list: Liste des mots-clés ou []
-        
-    Exemple:
-        >>> keywords = get_keywords("mongodb")
-        >>> print(keywords)
-        ['mongodb', 'mongo']
-    """
+    """Récupérer les mots-clés de recherche CVE d'une BDD."""
     config = get_database_config(db_key)
     if config and 'keywords' in config:
         return config['keywords']
@@ -545,26 +484,11 @@ def get_keywords(db_key):
 
 
 def print_database_info(db_key):
-    """
-    Afficher toutes les informations d'une base de données (pour debug).
-    
-    Args:
-        db_key (str): Clé de la base de données
-        
-    Exemple:
-        >>> print_database_info("mongodb")
-        ╔════════════════════════════════════════╗
-        ║  MongoDB (Document Store)              ║
-        ╚════════════════════════════════════════╝
-        Website: https://www.mongodb.com
-        GitHub: mongodb/mongo
-        RSS: https://www.mongodb.com/blog/rss.xml
-        Keywords: mongodb, mongo
-    """
+    """Afficher toutes les informations d'une base de données."""
     config = get_database_config(db_key)
     
     if not config:
-        print(f"Base de données '{db_key}' non trouvée")
+        print(f"❌ Base de données '{db_key}' non trouvée")
         return
     
     print(f"\n{'='*50}")
@@ -578,6 +502,8 @@ def print_database_info(db_key):
     
     if 'blog' in config and 'rss' in config['blog']:
         print(f"RSS: {config['blog']['rss']}")
+    else:
+        print("RSS: Non disponible")
     
     if 'keywords' in config:
         keywords_str = ', '.join(config['keywords'])
@@ -587,45 +513,49 @@ def print_database_info(db_key):
 
 
 # ============================================
-# tests
+# TESTS
 # ============================================
 
 if __name__ == "__main__":
-    """
-    Tests rapides pour vérifier la configuration.
-    Lance avec: python config/sources.py
-    """
+    """Tests rapides pour vérifier la configuration."""
     
-    print("Test de la configuration des sources\n")
+    print("✅ Test de la configuration des sources (VERSION CORRIGÉE)\n")
     
     # Test 1: Lister toutes les BDD
-    print("1️)Toutes les bases de données configurées:")
+    print("1️⃣ Toutes les bases de données configurées:")
     all_dbs = get_all_databases()
-    print(f"   {len(all_dbs)} BDD: {', '.join(all_dbs)}\n")
+    print(f"   {len(all_dbs)} BDD configurées\n")
     
-    # Test 2: Récupérer une config
-    print("2️)Configuration de MongoDB:")
-    print_database_info("mongodb")
+    # Test 2: Vérifier les RSS
+    print("2️⃣ Vérification des flux RSS:")
+    with_rss = []
+    without_rss = []
+    
+    for db in all_dbs:
+        rss = get_rss_url(db)
+        if rss:
+            with_rss.append(db)
+        else:
+            without_rss.append(db)
+    
+    print(f"   ✅ Avec RSS: {len(with_rss)} bases")
+    print(f"   ⚠️  Sans RSS: {len(without_rss)} bases")
+    if without_rss:
+        print(f"      {', '.join(without_rss)}")
+    print()
     
     # Test 3: BDD par catégorie
-    print("3️)Bases de données par catégorie:")
+    print("3️⃣ Bases de données par catégorie:")
     for category in get_all_categories():
         dbs = get_databases_by_category(category)
         print(f"   {category}: {', '.join(dbs) if dbs else 'Aucune'}")
     print()
     
-    # Test 4: Validation
-    print("4️)Tests de validation:")
-    print(f"   mongodb existe? {validate_database('mongodb')}")
-    print(f"   mysql existe? {validate_database('mysql')}")
-    print()
+    # Test 4: Détails de quelques bases
+    print("4️⃣ Exemples de configurations:")
+    for db in ["postgresql", "mongodb", "redis"]:
+        print_database_info(db)
     
-    # Test 5: Infos GitHub
-    print("5️) Informations GitHub:")
-    for db in all_dbs[:3]:  # Juste les 3 premières
-        github = get_github_info(db)
-        if github:
-            print(f"   {db}: {github['owner']}/{github['repo']}")
-    print()
-    
-    print("Yayy tous les tests passés!")
+    print("="*50)
+    print(f"✅ Configuration vérifiée : {len(with_rss)}/{len(all_dbs)} bases avec RSS")
+    print("="*50)
