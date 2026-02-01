@@ -126,16 +126,232 @@ DATABASES_CONFIG = {
         "keywords": ["cockroachdb", "cockroach"]
     },
     
-    # Tu peux ajouter d'autres bases de données ici
-    # Format à suivre pour ajouter une nouvelle BDD :
-    # "cle_bdd": {
-    #     "name": "Nom Complet",
-    #     "category": "Catégorie",
-    #     "github": {"owner": "...", "repo": "..."},
-    #     "blog": {"url": "...", "rss": "..."},
-    #     "website": "...",
-    #     "keywords": ["mot1", "mot2"]
-    # }
+   "postgresql": {
+        "name": "PostgreSQL",
+        "category": "Relational SQL",
+        "github": {
+            "owner": "postgres",
+            "repo": "postgres",
+            "url": "https://github.com/postgres/postgres"
+        },
+        "blog": {
+            "url": "https://www.postgresql.org/about/news/",
+            "rss": "https://www.postgresql.org/news.rss"
+        },
+        "website": "https://www.postgresql.org",
+        "docs": "https://www.postgresql.org/docs/release/",
+        "keywords": ["postgresql", "postgres"]
+    },
+
+    "mysql": {
+        "name": "MySQL",
+        "category": "Relational SQL",
+        "github": {
+            "owner": "mysql",
+            "repo": "mysql-server",
+            "url": "https://github.com/mysql/mysql-server"
+        },
+        "blog": {
+            "url": "https://blogs.oracle.com/mysql/",
+            "rss": "https://blogs.oracle.com/mysql/rss"
+       },
+       "website": "https://www.mysql.com",
+       "keywords": ["mysql"]
+    },
+
+    "mariadb": {
+    "name": "MariaDB",
+    "category": "Relational SQL",
+    "github": {
+        "owner": "MariaDB",
+        "repo": "server",
+        "url": "https://github.com/MariaDB/server"
+    },
+    "blog": {
+        "url": "https://mariadb.com/resources/blog/",
+        "rss": "https://mariadb.com/feed/"
+    },
+    "website": "https://mariadb.org",
+    "keywords": ["mariadb"]
+    },
+
+    "couchdb": {
+    "name": "Apache CouchDB",
+    "category": "Document Store",
+    "github": {
+        "owner": "apache",
+        "repo": "couchdb",
+        "url": "https://github.com/apache/couchdb"
+    },
+    "blog": {
+        "url": "https://blog.couchdb.org/",
+        "rss": "https://blog.couchdb.org/feed.xml"
+    },
+    "website": "https://couchdb.apache.org",
+    "keywords": ["couchdb", "apache couchdb"]
+    },
+
+    "arangodb": {
+    "name": "ArangoDB",
+    "category": "Multi-Model",
+    "github": {
+        "owner": "arangodb",
+        "repo": "arangodb",
+        "url": "https://github.com/arangodb/arangodb"
+    },
+    "blog": {
+        "url": "https://www.arangodb.com/blog/",
+        "rss": "https://www.arangodb.com/feed/"
+    },
+    "website": "https://www.arangodb.com",
+    "keywords": ["arangodb", "arango"]
+    },
+
+    "memcached": {
+    "name": "Memcached",
+    "category": "Key-Value",
+    "github": {
+        "owner": "memcached",
+        "repo": "memcached",
+        "url": "https://github.com/memcached/memcached"
+    },
+    "blog": {
+        "url": "https://memcached.org/blog/",
+        "rss": "https://memcached.org/blog/feed/"
+    },
+    "website": "https://memcached.org",
+    "keywords": ["memcached"]
+    },
+
+    "rethinkdb": {
+    "name": "RethinkDB",
+    "category": "Document Store",
+    "github": {
+        "owner": "rethinkdb",
+        "repo": "rethinkdb",
+        "url": "https://github.com/rethinkdb/rethinkdb"
+    },
+    "blog": {
+        "url": "https://rethinkdb.com/blog/",
+        "rss": "https://rethinkdb.com/blog/feed/"
+    },
+    "website": "https://rethinkdb.com",
+    "keywords": ["rethinkdb"]
+    },
+
+    "hbase": {
+    "name": "Apache HBase",
+    "category": "Columnar",
+    "github": {
+        "owner": "apache",
+        "repo": "hbase",
+        "url": "https://github.com/apache/hbase"
+    },
+    "blog": {
+        "url": "https://hbase.apache.org/blog/",
+        "rss": "https://blogs.apache.org/hbase/feed/entries/rss"
+    },
+    "website": "https://hbase.apache.org",
+    "keywords": ["hbase", "apache hbase"]
+    },
+
+    "solr": {
+    "name": "Apache Solr",
+    "category": "Search Engine",
+    "github": {
+        "owner": "apache",
+        "repo": "solr",
+        "url": "https://github.com/apache/solr"
+    },
+    "blog": {
+        "url": "https://solr.apache.org/blog/",
+        "rss": "https://blogs.apache.org/solr/feed/entries/rss"
+    },
+    "website": "https://solr.apache.org",
+    "keywords": ["solr", "apache solr"]
+    },
+
+    "tidb": {
+    "name": "TiDB",
+    "category": "Distributed SQL",
+    "github": {
+        "owner": "pingcap",
+        "repo": "tidb",
+        "url": "https://github.com/pingcap/tidb"
+    },
+    "blog": {
+        "url": "https://www.pingcap.com/blog/",
+        "rss": "https://www.pingcap.com/blog/index.xml"
+    },
+    "website": "https://www.pingcap.com/tidb/",
+    "keywords": ["tidb", "pingcap"]
+    },
+
+    "yugabytedb": {
+    "name": "YugabyteDB",
+    "category": "Distributed SQL",
+    "github": {
+        "owner": "yugabyte",
+        "repo": "yugabyte-db",
+        "url": "https://github.com/yugabyte/yugabyte-db"
+    },
+    "blog": {
+        "url": "https://www.yugabyte.com/blog/",
+        "rss": "https://www.yugabyte.com/feed/"
+    },
+    "website": "https://www.yugabyte.com",
+    "keywords": ["yugabyte", "yugabytedb"]
+    },
+
+    "timescaledb": {
+    "name": "TimescaleDB",
+    "category": "Time Series",
+    "github": {
+        "owner": "timescale",
+        "repo": "timescaledb",
+        "url": "https://github.com/timescale/timescaledb"
+    },
+    "blog": {
+        "url": "https://www.timescale.com/blog/",
+        "rss": "https://www.timescale.com/blog/rss/"
+    },
+    "website": "https://www.timescale.com",
+    "keywords": ["timescaledb", "timescale"]
+    },
+
+    "couchbase": {
+    "name": "Couchbase",
+    "category": "Document Store",
+    "github": {
+        "owner": "couchbase",
+        "repo": "couchbase-server",
+        "url": "https://github.com/couchbase/couchbase-server"
+    },
+    "blog": {
+        "url": "https://blog.couchbase.com/",
+        "rss": "https://blog.couchbase.com/feed/"
+    },
+    "website": "https://www.couchbase.com",
+    "keywords": ["couchbase"]
+    },
+
+    "orientdb": {
+    "name": "OrientDB",
+    "category": "Multi-Model",
+    "github": {
+        "owner": "orientechnologies",
+        "repo": "orientdb",
+        "url": "https://github.com/orientechnologies/orientdb"
+    },
+    "blog": {
+        "url": "https://orientdb.org/blog/",
+        "rss": "https://orientdb.org/feed/"
+    },
+    "website": "https://orientdb.org",
+    "keywords": ["orientdb"]
+},
+
+
 }
 
 
@@ -146,11 +362,13 @@ DATABASES_CONFIG = {
 CATEGORIES = {
     "Key-Value": ["redis", "memcached"],
     "Document Store": ["mongodb", "couchdb"],
-    "Graph": ["neo4j", "arangodb"],
+    "Graph": ["neo4j"],
     "Columnar": ["cassandra", "hbase"],
     "Distributed SQL": ["cockroachdb", "tidb", "yugabytedb"],
     "Search Engine": ["elasticsearch", "solr"],           
-    "Time Series": ["influxdb", "timescaledb"]
+    "Time Series": ["influxdb", "timescaledb"],
+    "Multi-Model": ["arangodb"], 
+    "Relational SQL": ["postgresql", "mysql", "mariadb"]
 }
 
 

@@ -58,8 +58,13 @@
         </div>
     </div>
 
-    <script src="/static/js/auth.js"></script>
+
     <script>
+        function logout() {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user_type");
+        window.location.href = "/";
+        }
         document.getElementById("processBtn").addEventListener("click", async () => {
             const btn = document.getElementById("processBtn");
             const status = document.getElementById("statusMsg");
@@ -69,7 +74,7 @@
             status.textContent = "Communication avec l'API Analyste...";
 
             try {
-                const response = await authFetch("/analyste/process", {
+                const response = await fetch("/analyste/process", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ input_file: "collected_data.json" })

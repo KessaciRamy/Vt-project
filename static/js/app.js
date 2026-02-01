@@ -147,8 +147,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 notifications.forEach(notif => {
-                    const date = notif.created_at ? new Date(notif.created_at).toLocaleDateString() : "";
-                    const colorClass = (notif.level === "critical") ? "text-danger" : "text-primary";
+                    const date =  new Date().toLocaleDateString() ;
+                    const colorClass = (notif.severity === "CRITICAL") ? "text-danger" : "text-primary";
                     
                     const li = document.createElement("li");
                     li.innerHTML = `
@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 <strong class="${colorClass}">${notif.title || "Info"}</strong>
                                 <small class="text-muted" style="font-size:0.75rem">${date}</small>
                             </div>
-                            <p class="mb-0 text-wrap text-muted" style="font-size: 0.85rem;">${notif.message}</p>
+                            <p class="mb-0 text-wrap text-muted" style="font-size: 0.85rem;">${notif.severity} : ${notif.cvss_score}</p>
                         </a>
                         <li><hr class="dropdown-divider"></li>
                     `;
@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             } catch (error) {
                 console.error("Erreur notif", error);
-                if(!onlyCount) notifList.innerHTML = '<li><span class="dropdown-item-text text-danger">Erreur API</span></li>';
+                if(!onlyCount) notifList.innerHTML = '<li><span class="dropdown-item-text text-danger">Erreur serveur</span></li>';
             }
         }
 
@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 dbs.forEach(db => {
                     const option = document.createElement("option");
                     option.value = db.id;
-                    option.textContent = db.name;
+                    option.textContent = db.category;
                     select.appendChild(option);
                 });
 

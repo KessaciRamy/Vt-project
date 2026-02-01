@@ -21,7 +21,7 @@ class DatabaseIngestor:
     # -------------------------------------------------
     # DATABASES
     # -------------------------------------------------
-    def get_or_create_database(self, name: str, category: str = "NoSQL"):
+    def get_or_create_database(self, name: str, category: str ):
         self.cursor.execute("""
             INSERT INTO databases (name, category)
             VALUES (%s, %s)
@@ -36,7 +36,13 @@ class DatabaseIngestor:
 
         self.cursor.execute("SELECT id FROM databases WHERE name=%s", (name,))
         return self.cursor.fetchone()[0]
-
+    def update_database_category(self, db_id: int, category: str):
+        self.cursor.execute("""
+        UPDATE databases
+        SET category = %s
+        WHERE id = %s
+          AND (category IS NULL OR category = '')
+        """, (category, db_id))
     # -------------------------------------------------
     # RELEASES
     # -------------------------------------------------
@@ -177,9 +183,11 @@ class DatabaseIngestor:
 
         for item in data:
             print("➡️ Processing item:", item["type"], item.get("database"))
-
             db_name = item["database"]
-            db_id = self.get_or_create_database(db_name)
+            db_id = self.get_or_create_database(db_name, category="")
+
+            if item.get("source") == "nvd" and item.get("category"):
+                self.update_database_category(db_id, item["category"])
 
             if item["type"] == "release":
                 self.insert_release(db_id, item)
