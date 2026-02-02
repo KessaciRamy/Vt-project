@@ -1,3 +1,5 @@
+let allDatabases = [];
+
 // --- FONCTION DE DECONNEXION GLOBALE ---
 function logout() {
     localStorage.removeItem("token");
@@ -174,23 +176,51 @@ document.addEventListener("DOMContentLoaded", () => {
         async function loadDatabases() {
             try {
                 const response = await authFetch("/data_api/databases");
-                const dbs = await response.json();
-                const select = document.getElementById("dbSelector");
-                
-                select.innerHTML = '<option value="" disabled selected>Choisir une technologie...</option>';
-                dbs.forEach(db => {
-                    const option = document.createElement("option");
-                    option.value = db.id;
-                    option.textContent = db.category;
-                    select.appendChild(option);
+                allDatabases = await response.json();
+
+                const categorySelect = document.getElementById('categorySelector');
+                categorySelect.innerHTML =
+                '<option value="" disabled selected>Catégorie...</option>';
+
+                const categories = [...new Set(allDatabases.map(db => db.category))];
+
+                categories.forEach(cat => {
+                const option = document.createElement("option");
+                option.value = cat;
+                option.textContent = cat;
+                categorySelect.appendChild(option);
                 });
 
-                select.addEventListener("change", (e) => loadDashboardData(e.target.value, e.target.options[e.target.selectedIndex].text));
+                categorySelect.addEventListener("change", onCategoryChange);
             } catch (error) {
                 console.error("Erreur chargement DBs", error);
             }
         }
+        function onCategoryChange(e) {
+            const selectedCategory = e.target.value;
+            const dbSelect = document.getElementById("dbSelector");
 
+            dbSelect.innerHTML =
+            '<option value="" disabled selected>Technologie...</option>';
+            dbSelect.disabled = false;
+
+            const filteredDBs = allDatabases.filter(
+            db => db.category === selectedCategory
+            );
+
+            filteredDBs.forEach(db => {
+            const option = document.createElement("option");
+            option.value = db.id;
+            option.textContent = db.name; // IMPORTANT: database name
+            dbSelect.appendChild(option);
+            });
+
+            dbSelect.onchange = (e) => {
+            const dbId = e.target.value;
+            const dbName = e.target.options[e.target.selectedIndex].text;
+            loadDashboardData(dbId, dbName);
+            };
+        }
         async function loadDashboardData(dbId, dbName) {
             document.getElementById("dbTitle").textContent = "Rapport : " + dbName;
 
