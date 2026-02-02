@@ -194,20 +194,23 @@ document.addEventListener("DOMContentLoaded", () => {
         async function loadDashboardData(dbId, dbName) {
             document.getElementById("dbTitle").textContent = "Rapport : " + dbName;
 
-            const [cvesRes, releasesRes, keywordsRes] = await Promise.all([
+            const [cvesRes, releasesRes, keywordsRes, blogsRes] = await Promise.all([
                 authFetch(`/data_api/databases/${dbId}/vulnerabilities`),
                 authFetch(`/data_api/databases/${dbId}/releases`),
-                authFetch(`/data_api/databases/${dbId}/keywords`)
+                authFetch(`/data_api/databases/${dbId}/keywords`),
+                authFetch(`/data_api/databases/${dbId}/blogs`)
             ]);
 
             const cves = await cvesRes.json();
             const releases = await releasesRes.json();
             const keywords = await keywordsRes.json();
+            const blogs = await blogsRes.json();
 
             updateKPI(cves, releases);
             updateCVEChart(cves);
             updateReleaseList(releases);
             updateKeywordChart(keywords);
+            updateBlogPost(blogs);
         }
 
         function updateKPI(cves, releases) {
@@ -262,6 +265,32 @@ document.addEventListener("DOMContentLoaded", () => {
                     datasets: [{ label: 'Occurrences', data: topKw.map(k => k.occurrences), backgroundColor: '#0d6efd' }]
                 },
                 options: { scales: { y: { beginAtZero: true } } }
+            });
+        }
+
+        function updateBlogPost(blogs){
+            const blogList = document.getElementById("blogList");
+            blogList.innerHTML = '<li class="list-group-item text-muted">Chargement...</li>';
+
+            blogList.innerHTML= "";
+            if(blogs.length === 0) {
+                blogList.innerHTML='<li class="list-group-item text-muted">Aucun article disponible</li>';
+            return;
+            }
+            blogs.forEach(blog => {
+            const item = document.createElement("li");
+            item.className = "list-group-item";
+
+            item.innerHTML = `
+                <h6 class="mb-1">${blog.title}</h6>
+                <small class="text-muted">
+                    ${blog.author || "pas d'auteur spécifique"} • ${blog.category} • ${blog.published_date}
+                </small>
+                <p class="mb-1">${blog.description}</p>
+                <a href="${blog.url}" target="_blank">Lire l'article</a>
+            `;
+
+            blogList.appendChild(item);
             });
         }
     }
